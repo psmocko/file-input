@@ -1,0 +1,37 @@
+<div #dropBox *ngIf="showDrop" class="row drop-box">
+    <span class="inner-drop-box">Drop files here or click on Choose Files.<br/>{{acceptedFileTypeString}}</span>
+</div>
+<div class="row">            
+  <label class="file-input" for="fileInput" class="mat-raised-button mat-primary">
+      <input id="fileInput" type="file" multiple #fileInput (change)="onFileInputChange($event)">
+      <i class="material-icons file-upload">attach_file</i>
+      Choose Files
+  </label>            
+</div>
+<div class="row">
+  <mat-list>
+      <mat-list-item *ngFor="let file of selectedFiles">                    
+          <p matLine>
+              <mat-icon matListIcon>insert_drive_file</mat-icon>
+              <span>{{file.name}}</span>
+              <span>{{file.fileSizeString}}</span>
+              <span style="flex: 1 1 auto"></span>
+              <button type="button" mat-icon-button (click)="removeItem(file)"><mat-icon>delete</mat-icon></button>                        
+          </p>                  
+      </mat-list-item>      
+      <button *ngIf="selectedFiles && selectedFiles.length > 0" type="button" mat-raised-button class="mat-primary" (click)="clearFiles()"><mat-icon>delete</mat-icon> Clear</button> 
+      <mat-divider></mat-divider>
+  </mat-list>  
+</div>
+<div *ngIf="invalidFiles && invalidFiles.length > 0" class="row warning">    
+    <mat-list>
+        <mat-list-item *ngFor="let file of invalidFiles">                    
+            <p matLine>
+                <mat-icon matListIcon class="warning">warning</mat-icon>
+                <span>{{file.name}}</span>
+                <span>{{file.fileSizeString}}</span>                                                      
+            </p>                    
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+</div>
