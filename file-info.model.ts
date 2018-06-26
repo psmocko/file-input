@@ -1,9 +1,11 @@
+import {FileDataType} from './file-data-type.enum';
+
 export class FileInfo {
     name: string;
     type: string;
     size: number;
-    data: string;
-    lastUpdated?: Date;
+    data: any;    
+    lastUpdated?: Date;    
 
     get fileSizeString(): string {
         if (this.size) {
@@ -18,11 +20,11 @@ export class FileInfo {
         return '(0)bytes';
     }
 
-    constructor(name: string, type: string, size: number, data: string, lastUpdated?: Date) {        
+    constructor(name: string, type: string, size: number, data: any, lastUpdated?: Date) {        
         this.name = name;
         this.type = type,
-        this.size = size;
-        this.data = data,
+        this.size = size;        
         this.lastUpdated = lastUpdated;
+        this.data = data;
     }
 }
